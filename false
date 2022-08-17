@@ -1,2 +1,2 @@
       invoke  active_record
-      create    db/migrate/20220808064710_add_done_to_tasks.rb
+      create    db/migrate/20220817213643_add_done_to_tasks.rb
