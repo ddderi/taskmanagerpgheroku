@@ -1,0 +1,20 @@
+<div class="d-flex flex-column align-items-center justify-content-center">
+<h1>Users</h1>
+
+<%= render "layouts/flash" %>
+
+<div>
+<ul>
+<% @users.each do |user| %>
+<li>
+<%= form_for user, ({controller: 'users', action: 'update', method: 'patch'}) do |f| %>
+<%= f.text_field :name %><%= f.submit 'update', class: "btn btn-outline-secondary" %><br>
+<%= f.label 'manager ?' %>
+<%= f.check_box :manager %>
+</li><br>
+
+<%end%>
+<%end%>
+</ul>
+</div>
+<div>

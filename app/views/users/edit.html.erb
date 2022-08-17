@@ -1,0 +1,47 @@
+<div class="d-flex flex-column align-items-center justify-content-center">
+<h1>edit <%= @user.name%> </h1>
+
+<% if @user.errors.any? %>
+<div id="error_explanation">
+    <h2>
+      <%= pluralize(@user.errors.count, "error") %>
+      prohibited your registration :
+    </h2>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %> </li>
+    <% end %>
+    </ul>
+    </div>
+<% end %>
+
+<% if !Current.user.manager %>
+<%= form_for @user, ({controller: 'users', action: 'update', method: 'patch'}) do |f| %>
+<%= render partial: 'form', locals: {f: f} %><br>
+<%= f.submit 'update user', class: "btn btn-outline-secondary"%>
+
+<%end%>
+<%else%>
+<%= form_for @user, ({controller: 'users', action: 'update', method: 'patch'}) do |f| %>
+
+
+<%= f.label 'username' %><br>
+<%= f.text_field :name %><br>
+<%= f.label 'email' %><br>
+<%= f.email_field :email %><br>
+
+<%= f.label 'is manager ?'%>
+<%= f.check_box :manager %><br>
+
+<%= f.label "which task would you like  #{@user.name} to do?" %><br>
+<%= f.collection_check_boxes :task_ids, Task.all, :id, :name do |b| %><br>
+<%= b.label %>
+<%= b.check_box %>
+<%end%>
+
+<br>
+<%= f.submit 'update user', class: "btn btn-outline-secondary" %>
+
+<%end%>
+<%end%>
+</div>

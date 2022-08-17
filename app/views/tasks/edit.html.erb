@@ -1,0 +1,31 @@
+<div class="d-flex flex-column align-items-center justify-content-center">
+<h1>Edit task</h1>
+<%= form_for @task, ({controller: 'tasks', action: 'update',method: 'patch'}) do |f| %>
+
+<%= f.label 'name'%><br>
+<%= f.text_field :name %><br>
+<%= f.label 'description'%><br>
+<%= f.text_area :description %><br>
+
+<%= f.label 'User(s) assigned to this task :' %><br>
+<%= f.collection_check_boxes :user_ids, User.all, :id, :name do |b| %><br>
+<%= b.label %>
+<%= b.check_box  %><br>
+
+<%end%>
+<br>
+<%= f.label 'created on :' %><br>
+<%= f.datetime_field :created_at %><br>
+
+<ul>
+
+<% @task.users.each do |user| %><br>
+<li><%= user.name %>   <%= link_to "edit user", edit_task_user_path(user), class: "btn btn-outline-secondary" %></li><br>
+
+<%end%>
+</ul>
+
+
+<%= f.submit 'Edit task', class: "btn btn-outline-secondary" %>
+<%end%>
+</div>

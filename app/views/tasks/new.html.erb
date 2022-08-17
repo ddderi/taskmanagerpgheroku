@@ -1,0 +1,31 @@
+<div class="d-flex flex-column align-items-center justify-content-center">
+<h1> new task </h1>
+
+<% if @task.errors.any? %>
+<div id="error_explanation">
+    <h2>
+      <%= pluralize(@task.errors.count, "error") %>
+      prohibited this task registration :
+    </h2>
+    <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+      <li><%= msg %> </li>
+    <% end %>
+    </ul>
+    </div>
+<% end %>
+
+<%= form_for @task do |f| %>
+<%= f.label 'name' %><br>
+<%= f.text_field :name %><br>
+<%= f.label 'description' %><br>
+<%= f.text_area :description%><br>
+
+<%= f.label "deadline's task" %><br>
+<%= f.date_field :deadline%><br>
+
+<br>
+<%= f.submit 'create task', class: "btn btn-outline-secondary" %><br>
+
+<%end%>
+</div>

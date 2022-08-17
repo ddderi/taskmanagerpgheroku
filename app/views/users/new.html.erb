@@ -1,0 +1,27 @@
+<div class="d-flex flex-column align-items-center justify-content-center">
+<h1>create user </h1>
+
+<% if @user.errors.any? %>
+<div id="error_explanation">
+    <h2>
+      <%= pluralize(@user.errors.count, "error") %>
+      prohibited your registration :
+    </h2>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %> </li>
+    <% end %>
+    </ul>
+    </div>
+<% end %>
+
+<%= form_for @user, ({controller: 'users', action: 'create', method: 'post'}) do |f| %>
+<%= render partial: 'form', locals: {f: f} %><br>
+<%= f.submit 'Create user', class: "btn btn-outline-secondary" %><br>
+<%end%>
+</div>
+
+
+
+
+

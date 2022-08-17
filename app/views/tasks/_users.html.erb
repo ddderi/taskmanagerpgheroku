@@ -1,0 +1,9 @@
+
+<h1>which users are assigned to this task ?</h1>
+<ul>
+<%= f.collection_check_boxes :user_ids, User.all, :id, :name do |b|%>
+<li><%= b.label %>
+<%= b.check_box %></li>
+<%end%>
+</ul>
+

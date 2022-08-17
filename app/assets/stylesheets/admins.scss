@@ -1,0 +1,35 @@
+.userstats{
+    
+    display: grid;
+    grid-template-columns: 40% 40%;
+    
+}
+
+.userstatschild{
+    
+    width: 500px;
+    background-color: rgb(88, 88, 88);
+    margin: 2%;
+    padding: 1%;
+    border-radius: 10px 10px;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.leftchild{
+ width: 50%;
+}
+
+.rightchild{
+    width: 50%;
+    
+}
+
+.taskdone{
+    background-color: rgb(199, 199, 199);
+    padding: 1%;
+    border-radius: 10px 10px;
+    margin-right: 2%;
+    margin-bottom: 2%;
+}

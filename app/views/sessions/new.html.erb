@@ -1,0 +1,21 @@
+<div class="d-flex flex-column align-items-center justify-content-center">
+<h1>Log-in</h1>
+
+<%= render partial: 'layouts/flash' %>
+
+
+<%= form_for :user, ({controller: 'sessions', action: 'create', method: 'post'}) do |f|%>
+<%= f.label 'name' %><br>
+<%= f.text_field :name %><br>
+<%= f.label 'password' %><br>
+<%= f.password_field :password %><br>
+<br>
+<%= f.submit 'Log-in', class: "btn btn-outline-secondary"%>
+<%= link_to 'homepage', home_path, class: "btn btn-outline-secondary" %>
+
+<%end%><br>
+
+
+
+<%= button_to 'Signing in with google', '/auth/google_oauth2', method: 'post', class: "btn btn-outline-secondary" %>
+</div>

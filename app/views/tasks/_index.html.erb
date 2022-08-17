@@ -1,0 +1,36 @@
+
+<ul>
+<% if !Current.user.tasks.empty? %>
+<div class="container text-center">
+<div class="row row-cols-2">
+<% Current.user.tasks.each do |task| %>
+
+<div class="col">
+<strong><%= task.name %></strong><br>
+<%= task.description %>
+<%= form_for task, ({controller: 'tasks', action: 'update', method: 'patch'}) do |f| %>
+<%= f.label 'done ? :' %>
+<%= f.check_box :done %>
+<%= f.submit 'update', class: "btn btn-outline-secondary"  %>
+
+<%end%><br>
+<% if !task.donedate.nil? %>
+<%= task.donedate %>
+<%end%>
+</div><br>
+
+<%end%>
+<%else%>
+<% if Current.user.manager %>
+<%= button_to 'See all the tasks', tasks_path, :method => "get", class: "btn btn-outline-secondary"%><br>
+<%= button_to 'Create tasks', new_task_path, :method => "get", class: "btn btn-outline-secondary" %><br>
+<%= button_to 'See all users', users_path, :method => "get", class: "btn btn-outline-secondary"%><br>
+<%= button_to 'Admin', stats_path, :method => "get", class: "btn btn-outline-secondary"%>
+<% else %>
+<h2>You don't have any tasks planned</h2>
+<%end%>
+<%end%>
+
+</div>
+</div>
+</ul>

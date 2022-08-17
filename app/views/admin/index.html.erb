@@ -1,0 +1,40 @@
+<div class="d-flex flex-column align-items-center justify-content-center">
+<h1>Employee performance</h1>
+
+<div class="container text-center">
+  <div class="row row-cols-3">
+<% @stats.each do |user| %>
+
+
+<div class="col">
+<h2><%= user.name %></h2>
+<div class='leftchild'>
+<p>Task still on going :<p>
+<% if !user.tasks.where(done: false).empty? %>
+<% user.tasks.where(done: false).each do |task| %>
+<p>- <%= task.name %></p>
+<%end%>
+<%else%>
+<p>None tasks on going</p>
+<%end%>
+</div>
+<div class='rightchild'>
+<p>Task already done :<p>
+<% if !user.tasks.where(done: true).empty? %>
+<% user.tasks.where(done: true).each do |task| %>
+<div class='taskdone'><p>- <%= task.name %></p>
+<p> done in : 
+<%= (task.donedate.strftime("%d/%m/%Y").to_i) - (task.created_at.strftime("%d/%m/%Y").to_i)%>
+days </p></div>
+<%end%>
+<p>AVG time for doing tasks : <%= (user.tasks.where(done: true).sum {|task| (task.donedate.strftime("%d/%m/%Y").to_i) - (task.created_at.strftime("%d/%m/%Y").to_i) })/ user.tasks.where(done: true).count   %>
+days </p>
+<%else%>
+<p>Didn't finish task yet</p>
+<%end%>
+</div>
+</div>
+<%end%>
+</div>
+</div>
+

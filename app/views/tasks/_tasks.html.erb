@@ -1,0 +1,18 @@
+
+<% if !@tasks.nil? %>
+<ul>
+
+<% @tasks.each do |task| %>
+<li><%= task.name %><br>
+<%= task.description %></li>
+<% if !task.users.nil? %>
+<% task.users.each do |user| %>
+<%= user %>
+<%end%>
+<%end%>
+<% end %>
+
+</ul>
+<%else%>
+<h2>You have nothing planned </h2>
+<%end%>
