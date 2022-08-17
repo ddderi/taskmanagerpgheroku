@@ -11,10 +11,13 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_08_16_043945) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "google_accounts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "name"
-    t.string "email"
+    t.text "name"
+    t.text "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "image"
@@ -22,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_043945) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string "name"
+    t.text "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -42,12 +45,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_043945) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "manager", default: false
-    t.string "password_digest"
-    t.string "email"
+    t.text "password_digest"
+    t.text "email"
   end
 
   add_foreign_key "google_accounts", "users"
