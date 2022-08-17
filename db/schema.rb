@@ -10,34 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_16_043945) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_17_080308) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "google_accounts", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.text "name"
     t.text "email"
+    t.text "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "image"
     t.index ["user_id"], name: "index_google_accounts_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
     t.text "name"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "done", default: false
     t.datetime "deadline"
     t.datetime "donedate"
     t.boolean "display", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_tasks", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "task_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "task_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["task_id"], name: "index_user_tasks_on_task_id"
@@ -46,11 +45,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_043945) do
 
   create_table "users", force: :cascade do |t|
     t.text "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.boolean "manager", default: false
     t.text "password_digest"
     t.text "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "google_accounts", "users"
