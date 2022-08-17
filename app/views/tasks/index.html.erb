@@ -10,6 +10,8 @@
 <%= task.description %><br>
 <%= task.deadline.strftime('due time : %d/%m/%Y') %><br>
 
+<%= link_to 'Edit', edit_task_path(task), class: "btn btn-outline-secondary"%>
+<%= link_to 'Delete', task, method: :delete, class: "btn btn-outline-secondary" %><br>
 
 <% if !task.users.empty? %>
 <h4>Users involved in the task :</h4>
@@ -19,8 +21,6 @@
 
 <%end%>
 
-<%= link_to 'Edit', edit_task_path(task), class: "btn btn-outline-secondary"%>
-<%= link_to 'Delete', task, method: :delete, class: "btn btn-outline-secondary" %><br>
 <br>
 </div>
 <%else%>

@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
     before_action :require_logged_in
-    before_action :admin, only: [:new, :create, :index, :edit, :update]
+    before_action :admin, only: [:new, :create, :index, :edit, :destroy]
     
   
     def show
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
         @task = Task.find_by(id: params[:id])
         @task.update(task_params)
         if @task.update(task_params)
-            if !@user.manager    
+            if !Current.user.manager
             redirect_to '/home'
             else 
             redirect_to tasks_path
@@ -55,6 +55,7 @@ class TasksController < ApplicationController
 
     def destroy
         @task = Task.find_by(id: params[:id])
+        @task.user_tasks.clear
         @task.destroy
         redirect_to '/tasks', :notice => 'Task has been deleted'
     end

@@ -6,7 +6,7 @@ class Task < ApplicationRecord
     validate :setdonedate
 
     def setdonedate
-        #  self.donedate = DateTime.now unless self.done = false
+        # self.donedate = DateTime.now unless !self.done
         if self.done
             self.donedate = DateTime.now
         elsif !self.done
