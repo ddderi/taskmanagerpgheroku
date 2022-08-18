@@ -20,7 +20,7 @@
 <ul>
 
 <% @task.users.each do |user| %><br>
-<li><%= user.name %>   <%= link_to "edit user", edit_task_user_path(user), class: "btn btn-outline-secondary" %></li><br>
+<li><%= user.name %>   <%= link_to "edit user",  edit_user_path(user), class: "btn btn-outline-secondary" %></li><br>
 
 <%end%>
 </ul>
