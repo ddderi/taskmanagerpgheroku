@@ -36,7 +36,12 @@ class UsersController < ApplicationController
         task = Task.find_by(id: params[:id])
         @user = User.find_by(id: params[:id])
         if @user.update(user_params)
-            redirect_to users_path, :notice => 'User updated'
+                if Current.user.manager 
+                    redirect_to home_path, :notice => 'user updated'
+                else
+                    redirect_to user_path(@user), :notice => 'Updated'
+                end
+
         else 
             puts 'Not updated'
             render :edit
