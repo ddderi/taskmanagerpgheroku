@@ -39,7 +39,7 @@ class UsersController < ApplicationController
                 if Current.user.manager 
                     redirect_to home_path, :notice => 'user updated'
                 else
-                    redirect_to user_path(@user), :notice => 'Updated'
+                    redirect_to home_path, :notice => 'Updated'
                 end
 
         else 
